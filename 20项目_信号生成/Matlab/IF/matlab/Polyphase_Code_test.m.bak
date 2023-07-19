@@ -1,0 +1,6 @@
+ 
+ 
+ 
+ M=8;
+ Tb=6;
+ out = Frank_code(M,Tb);

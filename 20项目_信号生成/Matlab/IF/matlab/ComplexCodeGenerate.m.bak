@@ -1,0 +1,18 @@
+function [Hn,PhaseHnPulse] = ComplexCodeGenerate(PulseNumTh,Npw,m_SubStepNum,m_PCMCodeIndex,m_fs,m_CodeWidth)
+   
+     PointNum = int(m_CodeWidth * m_fs);% 单个码元点数
+	   PhaseHnPulseCount = 0; % 复杂编码 取码计数
+	   PhaseHnPulse = zeros(1,Npw * m_SubStepNum);% 读取下来的相位码
+
+    PhaseHnPulseCount = 0;
+    for ( kk = PulseNumTh * Npw * m_SubStepNum; kk < PulseNumTh * Npw * m_SubStepNum + (pow(2, m_PCMCodeIndex) - 1) * m_SubStepNum; kk=kk+1)
+	  
+		   for ( ll = kk*PointNum; ll < (kk + 1)*PointNum; ll=ll+1)	   
+			    PhaseHnPulse[PhaseHnPulseCount] = m_SubPulsePCMCode[(kk) % m_CodeNumAll];// - PulseNumTh * Npw * m_SubStepNum
+			    PhaseHnPulseCount++;
+		    end
+	  end
+	  PhaseHnPulseCount = 0;
+	  Hn = cos(PhaseHnPulse) + sqrt(-1)*sin(PhaseHnPulse) ;
+
+end

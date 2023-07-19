@@ -1,0 +1,11 @@
+function out = P1(M,Tb)
+phase =zeros(1,M^2*Tb);
+ for j=1:M
+   for i=1:M
+      phase((j-1)*M+i)= -pi/M*(M-(2*j-1))*(M*(j-1)+(i-1)/M-(i-1));
+   end
+ end
+
+out = exp(sqrt(-1)*(phase));
+
+end 
